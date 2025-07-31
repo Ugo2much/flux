@@ -2,6 +2,7 @@
   "extends": ["config:recommended"],
   "recreateClosed": true,
   "enabledManagers": ["flux", "kubernetes", "helm-values"],
+  "schedule": ["before 2am on the first day of the month"],
   "flux": {
     "postUpdateOptions": ["fluxReconcile"]
   },
@@ -11,7 +12,6 @@
       "postUpdateOptions": ["fluxReconcile"],
       "additionalBranchPrefix": "flux-"
     },
-
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["major"],
