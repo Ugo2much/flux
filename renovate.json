@@ -1,31 +1,58 @@
 {
-  "extends": ["config:recommended"],
-  "recreateClosed": true,
-  "enabledManagers": ["flux", "kubernetes", "helm-values"],
-  "schedule": ["before 2am on the first day of the month"],
+  "extends": [
+    "config:recommended"
+  ],
+  "recreateWhen": "always",
+  "enabledManagers": [
+    "flux",
+    "kubernetes",
+    "helm-values"
+  ],
+  "schedule": [
+    "before 2am on the first day of the month"
+  ],
   "flux": {
-    "postUpdateOptions": ["fluxReconcile"]
+    "postUpdateOptions": [
+      "fluxReconcile"
+    ]
   },
   "packageRules": [
     {
-      "matchManagers": ["flux"],
-      "postUpdateOptions": ["fluxReconcile"],
+      "matchManagers": [
+        "flux"
+      ],
+      "postUpdateOptions": [
+        "fluxReconcile"
+      ],
       "additionalBranchPrefix": "flux-"
     },
     {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["major"],
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "automerge": false
     },
     {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "automerge": true,
       "automergeType": "pr"
     },
     {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["major"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "automerge": false
     }
   ],
